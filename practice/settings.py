@@ -14,18 +14,20 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent #시크릿키를 .env에 따로 저장하고 불러오기
+
 env_list = dict()
+
 local_env = open(os.path.join(BASE_DIR, '.env')) # BASE_DIR + .env 경로합쳐서 local_env에
 
 while True:
-    line = local_env.readline()     # 라인 한줄 읽어온다
+    line = local_env.readline()     # 라인 한 줄을 읽어온다
     if not line:
         break
-    line = line.replace('\n', '')   # 줄바꿈줄은 라인 마지막에 항상있기때문에 없애줌
+    line = line.replace('\n', '')   # 줄바꿈줄은 라인 마지막에 항상 있기 때문에 없애줌
     start = line.find('=')          # 구분자
     key = line[:start]              # 'SECRET_KEY'
     value = line[start+1:]          # key
-    env_list[key] = value           #env_list['SECRET_KEY'] = key
+    env_list[key] = value           # env_list['SECRET_KEY'] = key
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -132,6 +134,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
