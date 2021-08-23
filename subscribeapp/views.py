@@ -35,7 +35,7 @@ class SubscriptionView(RedirectView):
 class SubscriptionListView(ListView):
     model = Article
     context_object_name = 'article_list'
-    template_name = 'subcribeapp/list.html'
+    template_name = 'subscribeapp/list.html'
     paginate_by = 20
 
     def get_queryset(self):
