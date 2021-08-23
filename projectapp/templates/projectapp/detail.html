@@ -17,7 +17,7 @@
 
     {% if user.is_authenticated %}
     <div class="text-center">
-    {% if not subscription %}
+        {% if not subscription %}
         <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
            class="btn btn-primary rounded-pill px-5">
             Subscribe
