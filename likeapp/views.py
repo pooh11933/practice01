@@ -18,12 +18,18 @@ from likeapp.models import LikeRecord
 def db_transaction(user, article):
     likeRecord = LikeRecord.objects.filter(user=user,
                                            article=article)
+
     article.like += 1
     article.save()
     if likeRecord.exists():
        raise ValidationError('좋아요가 이미 존재합니다.')
     else:
         LikeRecord(user=user, article=article).save()
+
+
+
+
+
 @method_decorator(login_required, 'get')
 class LikeArticleView(RedirectView):
     def get(self, request, *args, **kwargs):
